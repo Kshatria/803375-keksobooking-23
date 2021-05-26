@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Константин Будылин](https://up.htmlacademy.ru/javascript/23/user/803375).
-* Наставник: `Неизвестно`.
+* Наставник: [Aliaksei Rachkouski](https://htmlacademy.ru/profile/id1815147).
 
 ---
 
