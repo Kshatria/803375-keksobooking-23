@@ -1,13 +1,13 @@
-const getRandomСoordinate = (firstNum, lastNum, afterPoint) => {
-  if (firstNum < 0 || lastNum < 0 || firstNum >= lastNum || afterPoint < 0) {
+function getRandomСoordinate(minNum, maxNum, digitsAfterPoint) {
+  if (minNum < 0 || maxNum < 0 || minNum >= maxNum || digitsAfterPoint < 0) {
     return;
   }
-  firstNum = Math.ceil(firstNum);
-  lastNum = Math.floor(lastNum);
-  if (!afterPoint) {
-    return Math.floor(Math.random() * (lastNum - firstNum + 1)) + firstNum;
+  const minInteger = Math.ceil(minNum),
+    maxInteger = Math.floor(maxNum);
+  if (!digitsAfterPoint) {
+    return Math.floor(Math.random() * (maxInteger - minInteger + 1)) + minInteger;
   }
-  return (Math.random() * (lastNum - firstNum) + firstNum).toFixed(afterPoint);
-};
+  return (Math.random() * (maxInteger - minInteger) + minInteger).toFixed(digitsAfterPoint);
+}
 
 getRandomСoordinate(40, 50, 3);
