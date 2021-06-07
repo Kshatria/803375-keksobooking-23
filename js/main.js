@@ -90,4 +90,3 @@ function createOffer() {
 }
 
 const createOffers = Array.from({length: OFFERS}, () => createOffer());
-console.log(createOffers)
