@@ -1,13 +1,13 @@
-// function getRandomDigits(minNum, maxNum, digitsAfterPoint) {
-//   if (minNum < 0 || maxNum < 0 || minNum >= maxNum || digitsAfterPoint < 0) {
+// function getRandomDigits(a, b, digits) {
+//   if (a < 0 || b < 0 || a >= b || digits < 0) {
 //     return;
 //   }
-//   const minInteger = Math.ceil(minNum),
-//     maxInteger = Math.floor(maxNum);
-//   if (!digitsAfterPoint) {
-//     return Math.floor(Math.random() * (maxInteger - minInteger + 1)) + minInteger;
+//   const lower = Math.ceil(a);
+//   const upper = Math.floor(b);
+//   if (!digits) {
+//     return Math.floor(Math.random() * (upper - lower  + 1)) + a;
 //   }
-//   return (Math.random() * (maxInteger - minInteger) + minInteger).toFixed(digitsAfterPoint);
+//   return (Math.random() * (upper - lower ) + lower ).toFixed(digits);
 // }
 
 function getRandomPositiveInteger (a, b) {
@@ -48,21 +48,23 @@ const OFFERS = 10,
   ];
 
 function createOffer() {
-  const avatarIndex = `0${String(getRandomPositiveInteger(MINVALUE, MAXVALUE))}`;
+  const avatarIndex = `0${getRandomPositiveInteger(MINVALUE, MAXVALUE)}`;
 
   function getRandomEl (key) {
     const FIRSTINDEX = 0,
       LASTINDEX = key.length - 1;
-
-    if (key === FEATURES) {
-      return key.slice(getRandomPositiveInteger(FIRSTINDEX, LASTINDEX));
-    }
     return key[getRandomPositiveInteger(FIRSTINDEX, LASTINDEX)];
   }
 
-  const LOCATION = {
-    lat: getRandomPositiveFloat(MINLAT, MAXLAT, ARCMINUTE),
-    lng: getRandomPositiveFloat(MINLNG, MAXLNG, ARCMINUTE),
+  function createArrayElements(key) {
+    const FIRSTINDEX = 0,
+      LASTINDEX = key.length - 1;
+    return key.slice(getRandomPositiveInteger(FIRSTINDEX, LASTINDEX));
+  }
+
+  const location = {
+    x: getRandomPositiveFloat(MINLAT, MAXLAT, ARCMINUTE),
+    y: getRandomPositiveFloat(MINLNG, MAXLNG, ARCMINUTE),
   };
 
   return {
@@ -72,10 +74,7 @@ function createOffer() {
     OFFER: {
       title: 'строка — заголовок',
       address: {
-        location: {
-          x: LOCATION.lat,
-          y: LOCATION.lng,
-        },
+        location,
       },
       price: getRandomPositiveInteger(MINCOST, MAXCOST),
       type: getRandomEl(TYPES),
@@ -83,11 +82,12 @@ function createOffer() {
       guests: getRandomPositiveInteger(MINGUESTS, MAXGUESTS),
       checkin: getRandomEl(TIMECHECK),
       checkout: getRandomEl(TIMECHECK),
-      features: getRandomEl(FEATURES),
+      features: createArrayElements(FEATURES),
       description: 'строка — описание',
-      photos: getRandomEl(PHOTOS),
+      photos: createArrayElements(PHOTOS),
     },
   };
 }
 
-const createOffers = new Array(OFFERS).fill(null).map(() => createOffer());
+const createOffers = Array.from({length: OFFERS}, () => createOffer());
+console.log(createOffers)
