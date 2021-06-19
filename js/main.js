@@ -1,3 +1,3 @@
-import {createOffers} from './data.js';
+import {newModule} from './newModule.js';
 
-createOffers();
+newModule();
