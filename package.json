@@ -13,13 +13,16 @@
   "devDependencies": {
     "browser-sync": "2.26.14",
     "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "4.0.1"
+    "eslint-config-htmlacademy": "4.0.1",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
   },
   "license": "MIT",
   "dependencies": {},
   "scripts": {
     "start": "browser-sync start --server --no-ui --files \"js/**/*.js\"",
-    "test": "eslint js/"
+    "test": "eslint js/",
+    "webpack": "npx webpack --config webpack.config.js -w"
   },
   "engines": {
     "node": "14.x",
