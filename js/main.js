@@ -1,3 +1,3 @@
-import {newModule} from './newModule.js';
+import {createPopupOffer} from './popupOffer.js';
 
-newModule();
+document.querySelector('#map-canvas').appendChild(createPopupOffer());
