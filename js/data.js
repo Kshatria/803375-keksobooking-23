@@ -26,14 +26,15 @@ import {
   PHOTOS
 } from './constants.js';
 
-const location = {
-  x: getRandomPositiveFloat(MINLAT, MAXLAT, ARCMINUTE),
-  y: getRandomPositiveFloat(MINLNG, MAXLNG, ARCMINUTE),
-};
-
-const avatarIndex = `0${getRandomPositiveInteger(MINVALUE, MAXVALUE)}`;
-
 function createOffer() {
+
+  const location = {
+    x: getRandomPositiveFloat(MINLAT, MAXLAT, ARCMINUTE),
+    y: getRandomPositiveFloat(MINLNG, MAXLNG, ARCMINUTE),
+  };
+
+  const avatarIndex = `0${getRandomPositiveInteger(MINVALUE, MAXVALUE)}`;
+
   return {
     AUTHOR: {
       avatar: `img/avatars/user${avatarIndex}.png`,
