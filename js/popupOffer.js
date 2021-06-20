@@ -166,19 +166,19 @@ function createAvatar (data) {
 }
 
 export function createPopupOffer (offer) {
-  const offersData = offer.OFFER;
-  const offersAuthor = offer.AUTHOR;
+  const offerData = offer.OFFER;
+  const offerAuthor = offer.AUTHOR;
 
-  createTitle(offersData);
-  createAddress(offersData);
-  createPrice(offersData);
-  createType(offersData);
-  createCapacity(offersData);
-  createTime(offersData);
-  createFeatures(offersData);
-  createDescription(offersData);
-  createPhotos(offersData);
-  createAvatar(offersAuthor);
+  createTitle(offerData);
+  createAddress(offerData);
+  createPrice(offerData);
+  createType(offerData);
+  createCapacity(offerData);
+  createTime(offerData);
+  createFeatures(offerData);
+  createDescription(offerData);
+  createPhotos(offerData);
+  createAvatar(offerAuthor);
 
   return card;
 }
