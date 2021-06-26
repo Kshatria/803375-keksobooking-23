@@ -1,3 +1,5 @@
+import {createOffers} from './data.js';
+
 const card = document.querySelector('#card')
   .content
   .querySelector('.popup')
@@ -165,7 +167,10 @@ function createAvatar (data) {
   avatar.setAttribute('src', data.avatar);
 }
 
-export function createPopupOffer (offer) {
+const offers = createOffers()
+
+
+function createPopupOffer (offer) {
   const offerData = offer.OFFER;
   const offerAuthor = offer.AUTHOR;
 
@@ -181,4 +186,10 @@ export function createPopupOffer (offer) {
   createAvatar(offerAuthor);
 
   return card;
+}
+
+export function createAllOffers (domElement) {
+  for (let i = 0; i < offers.length; i++) {
+    domElement.appendChild(createPopupOffer(offers[i]).cloneNode(true));
+  }
 }
