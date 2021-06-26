@@ -5,5 +5,5 @@ const map = document.querySelector('#map-canvas');
 
 createAllOffers(map);
 
-// true = enable form; false = disableform
+// true = enable form; false = disable form
 toggleFormStatus(false);
