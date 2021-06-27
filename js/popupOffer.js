@@ -167,7 +167,7 @@ function createAvatar (data) {
   avatar.setAttribute('src', data.avatar);
 }
 
-const offers = createOffers()
+const offers = createOffers();
 
 
 function createPopupOffer (offer) {
