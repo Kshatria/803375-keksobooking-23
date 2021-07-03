@@ -1,11 +1,4 @@
-const type = document.querySelector('#type'),
-  price = document.querySelector('#price'),
-  timein = document.querySelector('#timein'),
-  timeout = document.querySelector('#timeout'),
-  rooms = document.querySelector('#room_number'),
-  capacity = document.querySelector('#capacity');
-
-function validatePriceOfType () {
+function validatePriceOfType (price, type) {
   switch (type.value) {
     case 'bungalow':
       price.setAttribute('min', '0');
@@ -30,15 +23,15 @@ function validatePriceOfType () {
   }
 }
 
-function validatePrice () {
+function validatePrice (price) {
   price.reportValidity();
 }
 
-function validateTime () {
+function validateTime (timein, timeout) {
   timeout.value = timein.value;
 }
 
-function validateCapacityRooms () {
+function validateCapacityRooms (capacity, rooms) {
   capacity.querySelectorAll('option').forEach((el) => {
     el.setAttribute('disabled', 'disabled');
   });
@@ -70,11 +63,17 @@ function validateCapacityRooms () {
   }
 }
 
-validateCapacityRooms();
-
 export function validateFields () {
-  type.addEventListener('change', validatePriceOfType);
-  price.addEventListener('input', validatePrice);
-  timein.addEventListener('change', validateTime);
-  rooms.addEventListener('change', validateCapacityRooms);
+  const type = document.querySelector('#type'),
+    price = document.querySelector('#price'),
+    timein = document.querySelector('#timein'),
+    timeout = document.querySelector('#timeout'),
+    rooms = document.querySelector('#room_number'),
+    capacity = document.querySelector('#capacity');
+
+  document.addEventListener('DOMContentLoaded', validateCapacityRooms(capacity, rooms));
+  type.addEventListener('change', validatePriceOfType(price, type));
+  price.addEventListener('input', validatePrice(price));
+  timein.addEventListener('change', validateTime(timein, timeout));
+  rooms.addEventListener('change', validateCapacityRooms(capacity, rooms));
 }
