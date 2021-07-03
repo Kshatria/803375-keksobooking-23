@@ -71,9 +71,11 @@ export function validateFields () {
     rooms = document.querySelector('#room_number'),
     capacity = document.querySelector('#capacity');
 
-  document.addEventListener('DOMContentLoaded', validateCapacityRooms(capacity, rooms));
-  type.addEventListener('change', validatePriceOfType(price, type));
-  price.addEventListener('input', validatePrice(price));
-  timein.addEventListener('change', validateTime(timein, timeout));
-  rooms.addEventListener('change', validateCapacityRooms(capacity, rooms));
+
+    document.addEventListener('DOMContentLoaded', validateCapacityRooms(capacity, rooms));
+
+  type.addEventListener('change', () => validatePriceOfType(price, type));
+  price.addEventListener('input', () => validatePrice(price));
+  timein.addEventListener('change', () => validateTime(timein, timeout));
+  rooms.addEventListener('change', () => validateCapacityRooms(capacity, rooms));
 }
