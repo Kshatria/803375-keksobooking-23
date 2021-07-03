@@ -1,13 +1,7 @@
 import {createOffers} from './data.js';
 
-const card = document.querySelector('#card')
-  .content
-  .querySelector('.popup')
-  .cloneNode(true);
-
-function createTitle (data) {
+function createTitle (data, card) {
   const title = card.querySelector('.popup__title');
-
   if (!data.title) {
     title.remove();
     return;
@@ -16,7 +10,7 @@ function createTitle (data) {
   title.textContent = data.title;
 }
 
-function createAddress (data) {
+function createAddress (data, card) {
   const address = card.querySelector('.popup__text--address');
   if (!data.address.location.x || !data.address.location.y) {
     address.remove();
@@ -26,7 +20,7 @@ function createAddress (data) {
   address.textContent = `${data.address.location.x}, ${data.address.location.y}`;
 }
 
-function createPrice (data) {
+function createPrice (data, card) {
   const price = card.querySelector('.popup__text--price');
 
   if (!data.price) {
@@ -52,9 +46,8 @@ function getOfferTypeRu (data) {
   }
 }
 
-function createType (data) {
+function createType (data, card) {
   const type = card.querySelector('.popup__type');
-
   if (!data.type) {
     type.remove();
     return;
@@ -83,7 +76,7 @@ function getWords (dataStr, dataVal) {
   }
 }
 
-function createCapacity (data) {
+function createCapacity (data, card) {
   const capacity = card.querySelector('.popup__text--capacity');
 
   if (!data.rooms || !data.guests) {
@@ -93,7 +86,7 @@ function createCapacity (data) {
   capacity.textContent = `${data.rooms} ${getWords('rooms', data.rooms)} для ${data.guests} ${getWords('guests', data.guests)}`;
 }
 
-function createTime (data) {
+function createTime (data, card) {
   const time = card.querySelector('.popup__text--time');
 
   if (!data.checkin || !data.checkout) {
@@ -104,7 +97,7 @@ function createTime (data) {
   time.textContent = `Заезд после ${data.checkin}, выезд до ${data.checkout}`;
 }
 
-function createFeatures (data) {
+function createFeatures (data, card) {
   const features = card.querySelectorAll('.popup__feature');
   const featuresWrap = card.querySelectorAll('.popup__features');
 
@@ -123,7 +116,7 @@ function createFeatures (data) {
   });
 }
 
-function createDescription (data) {
+function createDescription (data, card) {
   const description = card.querySelector('.popup__description');
 
   if (!data.description) {
@@ -134,7 +127,7 @@ function createDescription (data) {
   description.textContent = data.description;
 }
 
-function createPhotos (data) {
+function createPhotos (data, card) {
   const photos = card.querySelector('.popup__photos');
   const popupPhoto = photos.querySelector('.popup__photo');
   const photosArray = [];
@@ -156,7 +149,7 @@ function createPhotos (data) {
   });
 }
 
-function createAvatar (data) {
+function createAvatar (data, card) {
   const avatar = card.querySelector('.popup__avatar');
 
   if (!data.avatar) {
@@ -167,28 +160,28 @@ function createAvatar (data) {
   avatar.setAttribute('src', data.avatar);
 }
 
-const offers = createOffers();
-
 function createPopupOffer (offer) {
   const offerData = offer.OFFER;
   const offerAuthor = offer.AUTHOR;
+  const card = document.querySelector('#card')
+    .content
+    .querySelector('.popup')
+    .cloneNode(true);
 
-  createTitle(offerData);
-  createAddress(offerData);
-  createPrice(offerData);
-  createType(offerData);
-  createCapacity(offerData);
-  createTime(offerData);
-  createFeatures(offerData);
-  createDescription(offerData);
-  createPhotos(offerData);
-  createAvatar(offerAuthor);
+  createTitle(offerData, card);
+  createAddress(offerData, card);
+  createPrice(offerData, card);
+  createType(offerData, card);
+  createCapacity(offerData, card);
+  createTime(offerData, card);
+  createFeatures(offerData, card);
+  createDescription(offerData, card);
+  createPhotos(offerData, card);
+  createAvatar(offerAuthor, card);
 
   return card;
 }
 
-export function createAllOffers (domElement) {
-  for (let i = 0; i < offers.length; i++) {
-    domElement.appendChild(createPopupOffer(offers[i]).cloneNode(true));
-  }
+export function appendOffer (domElement) {
+  domElement.appendChild(createPopupOffer(createOffers()[0]));
 }

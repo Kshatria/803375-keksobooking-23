@@ -1,9 +1,9 @@
-import {createAllOffers} from './popupOffer.js';
+import {appendOffer} from './popupOffer.js';
 import {toggleFormStatus} from './formStatus.js';
 
 const map = document.querySelector('#map-canvas');
 
-createAllOffers(map);
+appendOffer(map);
 
 // true = enable form; false = disable form
 toggleFormStatus(false);
