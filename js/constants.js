@@ -1,4 +1,4 @@
-const OFFERS = 1,
+const OFFERS = 5,
   MINVALUE = 1,
   MAXVALUE = 8,
   MINROOMS = 1,

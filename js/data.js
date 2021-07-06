@@ -57,8 +57,6 @@ function createOffer() {
   };
 }
 
-function createOffers () {
+export function createOffers () {
   return Array.from({length: OFFERS}, () => createOffer());
 }
-
-export {createOffers};

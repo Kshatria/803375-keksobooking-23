@@ -182,6 +182,6 @@ function createPopupOffer (offer) {
   return card;
 }
 
-export function appendOffer (domElement) {
-  domElement.appendChild(createPopupOffer(createOffers()[0]));
+export function appendOffer (index) {
+  return createPopupOffer(createOffers()[index]);
 }
