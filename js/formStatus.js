@@ -1,6 +1,3 @@
-const formFields = document.querySelector('.ad-form'),
-  formFilters = document.querySelector('.map__filters');
-
 function disableForm (form) {
   const formClass = form.classList[0];
   form.classList.add(`${formClass}--disabled`);
@@ -28,6 +25,9 @@ function enableForm (form) {
 }
 
 export function toggleFormStatus (status) {
+  const formFields = document.querySelector('.ad-form'),
+    formFilters = document.querySelector('.map__filters');
+
   if (status) {
     enableForm(formFields);
     enableForm(formFilters);
